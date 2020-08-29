@@ -15,7 +15,7 @@ public class Items {
 	public ItemStack[] beanSword, beanBow, beanCrossBow, beanHelmet, beanPlate, beanLeggings, beanBoots = new ItemStack[TIER_AMOUNT];
 
 	public Items() {
-		for (int i = TIER_AMOUNT - 1; i >= 0; i++) {
+		for (int i = 0; i < TIER_AMOUNT; i++) {
 			beanPlate[i] = new ItemStack(Material.LEATHER_CHESTPLATE);
 			LeatherArmorMeta colorMeta = (LeatherArmorMeta) beanPlate[i].getItemMeta();
 			switch (i) {

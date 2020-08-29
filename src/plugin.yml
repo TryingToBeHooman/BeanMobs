@@ -4,3 +4,9 @@ name: BeanMobs
 version: 1.0
 main: me.tryingtobehooman.Main
 api-version: 1.16
+
+commands:
+   extradifficulty:
+      aliases:
+      - ed
+      description: changes the extra difficulty

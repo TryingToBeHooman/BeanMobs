@@ -13,6 +13,7 @@ public class Commands implements CommandExecutor {
 
 	public Commands(Main main, Items items) {
 		this.plugin = main;
+		plugin.getCommand("extradifficulty").setExecutor(this);
 		this.items = items;
 	}
 

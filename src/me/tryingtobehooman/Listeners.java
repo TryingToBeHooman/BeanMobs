@@ -1,5 +1,6 @@
 package me.tryingtobehooman;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -11,6 +12,7 @@ public class Listeners implements Listener {
 	public Listeners(Main main, Items items) {
 		this.plugin = main;
 		this.items = items;
+		Bukkit.getPluginManager().registerEvents(this, plugin);
 	}
 
 	@EventHandler
@@ -25,7 +27,6 @@ public class Listeners implements Listener {
 		} else if (tier == 0) {
 			return;
 		}
-
 		items.getGear(event.getEntity(), tier - 1);
 
 	}

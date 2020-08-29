@@ -12,12 +12,12 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class Items {
 	public final int TIER_AMOUNT = 3;
-	public ItemStack[] beanSword, beanBow, beanCrossBow, colorPlate = new ItemStack[TIER_AMOUNT];
+	public ItemStack[] beanSword, beanBow, beanCrossBow, beanHelmet, beanPlate, beanLeggings, beanBoots = new ItemStack[TIER_AMOUNT];
 
 	public Items() {
 		for (int i = TIER_AMOUNT - 1; i >= 0; i++) {
-			colorPlate[i] = new ItemStack(Material.LEATHER_CHESTPLATE);
-			LeatherArmorMeta colorMeta = (LeatherArmorMeta) colorPlate[i].getItemMeta();
+			beanPlate[i] = new ItemStack(Material.LEATHER_CHESTPLATE);
+			LeatherArmorMeta colorMeta = (LeatherArmorMeta) beanPlate[i].getItemMeta();
 			switch (i) {
 			case 2:
 				colorMeta.setColor(Color.RED);
@@ -29,8 +29,8 @@ public class Items {
 				colorMeta.setColor(Color.GREEN);
 				break;
 			}
-			colorPlate[i].setItemMeta(colorMeta);
-			colorPlate[i].addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, i * 2 + 1);
+			beanPlate[i].setItemMeta(colorMeta);
+			beanPlate[i].addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, i * 2 + 1);
 
 			beanSword[i] = new ItemStack(Material.DIAMOND_SWORD);
 			beanSword[i].addUnsafeEnchantment(Enchantment.DAMAGE_ALL, i * 2);
@@ -45,6 +45,13 @@ public class Items {
 			beanCrossBow[i].addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, i * 2 + 1);
 			beanCrossBow[i].addUnsafeEnchantment(Enchantment.ARROW_FIRE, i * 2);
 			beanCrossBow[i].addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, i);
+			
+			beanHelmet[i] = new ItemStack(Material.IRON_HELMET);
+			beanHelmet[i].addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, i * 2 + 1);
+			beanLeggings[i] = new ItemStack(Material.CHAINMAIL_LEGGINGS);
+			beanLeggings[i].addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, i * 2 + 1);
+			beanBoots[i] = new ItemStack(Material.GOLDEN_BOOTS);
+			beanBoots[i].addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, i * 2 + 1);
 		}
 	}
 	
@@ -96,11 +103,11 @@ public class Items {
 		entity.addScoreboardTag("beanmobsgear");
 
 		if (fullArmor) {
-			entity.getEquipment().setHelmet(new ItemStack(Material.IRON_HELMET));
-			entity.getEquipment().setChestplate(new ItemStack(colorPlate[tier]));
-
-			entity.getEquipment().setLeggings(new ItemStack(Material.NETHERITE_LEGGINGS));
-			entity.getEquipment().setBoots(new ItemStack(Material.NETHERITE_BOOTS));
+			entity.getEquipment().setHelmet(new ItemStack(beanBoots[tier]));
+			entity.getEquipment().setChestplate(new ItemStack(beanPlate[tier]));
+			entity.getEquipment().setLeggings(new ItemStack(beanBoots[tier]));
+			entity.getEquipment().setBoots(new ItemStack(beanBoots[tier]));
+			
 			entity.getEquipment().setHelmetDropChance(0.0F);
 			entity.getEquipment().setChestplateDropChance(0.0F);
 			entity.getEquipment().setLeggingsDropChance(0.0F);

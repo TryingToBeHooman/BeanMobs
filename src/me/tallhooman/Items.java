@@ -2,11 +2,11 @@ package me.tallhooman;
 
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Creeper;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Zombie;
@@ -16,8 +16,11 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class Items {
 	public final int TIER_AMOUNT = 3;
 	public ItemStack[] beanSword, beanBow, beanCrossBow, beanHelmet, beanPlate, beanLeggings, beanBoots;
+	
+	private Main plugin;
 
 	public Items(Main plugin) {
+		this.plugin = plugin;
 		beanSword = new ItemStack[TIER_AMOUNT];
 		beanBow = new ItemStack[TIER_AMOUNT];
 		beanCrossBow = new ItemStack[TIER_AMOUNT];
@@ -26,7 +29,6 @@ public class Items {
 		beanLeggings = new ItemStack[TIER_AMOUNT];
 		beanBoots = new ItemStack[TIER_AMOUNT];
 		for (int i = 0; i < TIER_AMOUNT; i++) {
-			plugin.getLogger().warning(Integer.toString(i));
 			beanPlate[i] = new ItemStack(Material.LEATHER_CHESTPLATE);
 			LeatherArmorMeta colorMeta = (LeatherArmorMeta) beanPlate[i].getItemMeta();
 			Material swordMaterial;
@@ -82,8 +84,8 @@ public class Items {
 			if(entity instanceof Creeper) {
 				Creeper creeper = (Creeper) entity;
 				creeper.setPowered(false);
-				creeper.setMaxFuseTicks(1);
-				creeper.setExplosionRadius(12);;
+				creeper.setMaxFuseTicks(30);
+				creeper.setExplosionRadius(3);;
 			}
 			return;
 		}
@@ -93,9 +95,9 @@ public class Items {
 			Creeper creeper = (Creeper) entity;
 			switch(tier) {
 			case 0:
-				creeper.setPowered(false);
+				creeper.setPowered(true);
 				creeper.setMaxFuseTicks(25);
-				creeper.setExplosionRadius(5);
+				creeper.setExplosionRadius(3);
 				break;
 			case 1:
 				creeper.setPowered(true);
@@ -111,11 +113,13 @@ public class Items {
 			break;
 
 		case ZOMBIE:
-			if(	tier == 1 && (random.nextBoolean() && random.nextBoolean())
+			if(	(tier == 1 && (random.nextBoolean() && random.nextBoolean()))
 			||
-				tier == 2 && random.nextBoolean()
+				(tier == 2 && random.nextBoolean())
 			) {
-				entity.addPassenger(entity.getWorld().spawnEntity(entity.getLocation(), EntityType.CREEPER));
+				Bukkit.getScheduler().runTask(plugin, () -> {
+					entity.addPassenger(entity.getWorld().spawnEntity(entity.getLocation(), EntityType.CREEPER));
+				});
 				((Zombie) entity).setBaby();
 			}
 			fullArmor = true;

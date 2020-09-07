@@ -1,4 +1,4 @@
-package me.tryingtobehooman;
+package me.tallhooman;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,7 +54,7 @@ public class Commands implements CommandExecutor, TabCompleter {
 					if(entity instanceof Player) {
 						return;
 					}
-					items.getGear((LivingEntity) entity, n - 1);
+					items.gitGud((LivingEntity) entity, n - 1);
 				}
 			});
 		});

@@ -1,4 +1,4 @@
-package me.tryingtobehooman;
+package me.tallhooman;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -27,7 +27,7 @@ public class Listeners implements Listener {
 		} else if (tier == 0) {
 			return;
 		}
-		items.getGear(event.getEntity(), tier - 1);
+		items.gitGud(event.getEntity(), tier - 1);
 
 	}
 }

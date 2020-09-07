@@ -1,4 +1,4 @@
-package me.tryingtobehooman;
+package me.tallhooman;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
